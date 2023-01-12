@@ -2,7 +2,7 @@ import {makeScroller} from "./scroller";
 import {printDebug} from "../constants";
 import {resetIndexesCache} from "./listUtil";
 
-const INTERVAL_MS = 300;
+const INTERVAL_MS = 100;
 let mousePosition;
 
 /**

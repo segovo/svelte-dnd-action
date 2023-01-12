@@ -2,15 +2,13 @@ import {SHADOW_ELEMENT_ATTRIBUTE_NAME, DRAGGED_ELEMENT_ID} from "../constants";
 import {findCenter} from "./intersection";
 import {svelteNodeClone} from "./svelteNodeClone";
 
-const TRANSITION_DURATION_SECONDS = 0.2;
-
 /**
  * private helper function - creates a transition string for a property
  * @param {string} property
  * @return {string} - the transition string
  */
 function trs(property) {
-    return `${property} ${TRANSITION_DURATION_SECONDS}s ease`;
+    return `${property} 0s ease`;
 }
 /**
  * clones the given element and applies proper styles and transitions to the dragged element
