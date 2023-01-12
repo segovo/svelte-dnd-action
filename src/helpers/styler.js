@@ -2,7 +2,7 @@ import {SHADOW_ELEMENT_ATTRIBUTE_NAME, DRAGGED_ELEMENT_ID} from "../constants";
 import {findCenter} from "./intersection";
 import {svelteNodeClone} from "./svelteNodeClone";
 
-const TRANSITION_DURATION_SECONDS = 2;
+const TRANSITION_DURATION_SECONDS = 0;
 
 /**
  * private helper function - creates a transition string for a property
