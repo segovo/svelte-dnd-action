@@ -11,9 +11,7 @@
         "build": "yarn lint && rollup -c",
         "prepublishOnly": "yarn build"
     },
-    "dependencies": {
-        "yarn": "^1.22.19"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@babel/core": "^7.9.6",
         "@babel/preset-env": "^7.9.6",

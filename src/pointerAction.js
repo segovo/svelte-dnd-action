@@ -215,9 +215,9 @@ function handleMouseMove(e) {
     e.preventDefault();
     const c = e.touches ? e.touches[0] : e;
     currentMousePosition = {x: c.clientX, y: c.clientY};
-    /*draggedEl.style.transform = `translate3d(${currentMousePosition.x - dragStartMousePosition.x}px, ${
+    draggedEl.style.transform = `translate3d(${currentMousePosition.x - dragStartMousePosition.x}px, ${
         currentMousePosition.y - dragStartMousePosition.y
-    }px, 0)`;*/
+    }px, 0)`;
 }
 
 function handleDrop() {
@@ -274,10 +274,11 @@ function animateDraggedToFinalPosition(shadowElIdx, callback) {
         x: shadowElRect.left - parseFloat(draggedEl.style.left),
         y: shadowElRect.top - parseFloat(draggedEl.style.top)
     };
-    const transition = `transform 0ms ease`;
+    const {dropAnimationDurationMs} = dzToConfig.get(shadowElDropZone);
+    const transition = `transform ${dropAnimationDurationMs}ms ease`;
     draggedEl.style.transition = draggedEl.style.transition ? draggedEl.style.transition + "," + transition : transition;
     draggedEl.style.transform = `translate3d(${newTransform.x}px, ${newTransform.y}px, 0)`;
-    window.setTimeout(callback, 0);
+    window.setTimeout(callback, dropAnimationDurationMs);
 }
 
 function scheduleDZForRemovalAfterDrop(dz, destroy) {
@@ -442,6 +443,7 @@ export function dndzone(node, options) {
 
     function configure({
         items = undefined,
+        flipDurationMs: dropAnimationDurationMs = 0,
         type: newType = DEFAULT_DROP_ZONE_TYPE,
         dragDisabled = false,
         morphDisabled = false,
@@ -451,6 +453,7 @@ export function dndzone(node, options) {
         transformDraggedElement = () => {},
         centreDraggedOnCursor = false
     }) {
+        config.dropAnimationDurationMs = dropAnimationDurationMs;
         if (config.type && newType !== config.type) {
             unregisterDropZone(node, config.type);
         }
