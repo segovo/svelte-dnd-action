@@ -32,7 +32,7 @@ import {
     DRAGGED_OVER_INDEX_EVENT_NAME
 } from "./helpers/dispatcher";
 import {areArraysShallowEqualSameOrder, areObjectsShallowEqual, toString} from "./helpers/util";
-//import {getBoundingRectNoTransforms} from "./helpers/intersection";
+import {getBoundingRectNoTransforms} from "./helpers/intersection";
 
 const DEFAULT_DROP_ZONE_TYPE = "--any--";
 const MIN_OBSERVATION_INTERVAL_MS = 100;
@@ -269,14 +269,14 @@ function handleDrop() {
 
 // helper function for handleDrop
 function animateDraggedToFinalPosition(shadowElIdx, callback) {
-    //const shadowElRect = getBoundingRectNoTransforms(shadowElDropZone.children[shadowElIdx]);
-    //const newTransform = {
-    //    x: shadowElRect.left - parseFloat(draggedEl.style.left),
-    //    y: shadowElRect.top - parseFloat(draggedEl.style.top)
-    //};
-    //const transition = `transform 0ms ease`;
-    //draggedEl.style.transition = draggedEl.style.transition ? draggedEl.style.transition + "," + transition : transition;
-    //draggedEl.style.transform = `translate3d(${newTransform.x}px, ${newTransform.y}px, 0)`;
+    const shadowElRect = getBoundingRectNoTransforms(shadowElDropZone.children[shadowElIdx]);
+    const newTransform = {
+        x: shadowElRect.left - parseFloat(draggedEl.style.left),
+        y: shadowElRect.top - parseFloat(draggedEl.style.top)
+    };
+    const transition = `transform 0ms ease`;
+    draggedEl.style.transition = draggedEl.style.transition ? draggedEl.style.transition + "," + transition : transition;
+    draggedEl.style.transform = `translate3d(${newTransform.x}px, ${newTransform.y}px, 0)`;
     window.setTimeout(callback, 0);
 }
 
