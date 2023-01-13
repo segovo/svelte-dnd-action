@@ -275,8 +275,6 @@ function animateDraggedToFinalPosition(shadowElIdx, callback) {
         y: shadowElRect.top - parseFloat(draggedEl.style.top)
     };
     const {dropAnimationDurationMs} = dzToConfig.get(shadowElDropZone);
-    const transition = `transform ${dropAnimationDurationMs}ms ease`;
-    draggedEl.style.transition = draggedEl.style.transition ? draggedEl.style.transition + "," + transition : transition;
     draggedEl.style.transform = `translate3d(${newTransform.x}px, ${newTransform.y}px, 0)`;
     window.setTimeout(callback, dropAnimationDurationMs);
 }
