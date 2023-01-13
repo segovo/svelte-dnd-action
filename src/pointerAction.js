@@ -263,14 +263,7 @@ function handleDrop() {
         unDecorateShadowElement(shadowElDropZone.children[shadowElIdx]);
         cleanupPostDrop();
     }
-    animateDraggedToFinalPosition(shadowElIdx, finalizeWithinZone);
-}
-
-// helper function for handleDrop
-function animateDraggedToFinalPosition(shadowElIdx, callback) {
-    draggedEl.style.transition = "0";
-    draggedEl.style.display = "none";
-    window.setTimeout(callback, 0);
+    finalizeWithinZone();
 }
 
 function scheduleDZForRemovalAfterDrop(dz, destroy) {

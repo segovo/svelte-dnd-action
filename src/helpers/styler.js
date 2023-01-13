@@ -40,7 +40,7 @@ export function createDraggedElementFrom(originalElement, positionCenterOnXY) {
     draggedEl.style.width = `${rect.width}px`;
     draggedEl.style.zIndex = "9999";
     draggedEl.style.cursor = "grabbing";
-    draggedEl.style.transform = "scale(0.8) translateX(240px)";
+    draggedEl.style.display = "none";
     return draggedEl;
 }
 
