@@ -211,7 +211,7 @@ function handleDraggedIsOverIndex(e) {
 
 // Global mouse/touch-events handlers
 function handleMouseMove(e) {
-    draggedEl.style.display = "block";
+    draggedEl.style.display = "flex";
     e.preventDefault();
     const c = e.touches ? e.touches[0] : e;
     currentMousePosition = {x: c.clientX, y: c.clientY};
