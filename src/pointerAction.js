@@ -214,7 +214,7 @@ function handleMouseMove(e) {
     e.preventDefault();
     const c = e.touches ? e.touches[0] : e;
     currentMousePosition = {x: c.clientX, y: c.clientY};
-    draggedEl.style.transform = `scale(0.8) translateX(240px) translate3d(${currentMousePosition.x - dragStartMousePosition.x}px, ${
+    draggedEl.style.transform = `scale(0.8) translate3d(${currentMousePosition.x - dragStartMousePosition.x}px, ${
         currentMousePosition.y - dragStartMousePosition.y
     }px, 0)`;
 }
