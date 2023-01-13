@@ -18,8 +18,7 @@ export function createDraggedElementFrom(originalElement, positionCenterOnXY) {
     const draggedEl = svelteNodeClone(originalElement);
     copyStylesFromTo(originalElement, draggedEl);
     draggedEl.id = DRAGGED_ELEMENT_ID;
-    const defaultDisplay = originalElement.style.display;
-    draggedEl.style.display = "none";
+
     draggedEl.style.position = "fixed";
     let elTopPx = rect.top;
     let elLeftPx = rect.left;
@@ -41,8 +40,7 @@ export function createDraggedElementFrom(originalElement, positionCenterOnXY) {
     draggedEl.style.width = `${rect.width}px`;
     draggedEl.style.zIndex = "9999";
     draggedEl.style.cursor = "grabbing";
-    draggedEl.style.display = defaultDisplay;
-
+    draggedEl.style.transform = "scale(0.8) translateX(240px)";
     return draggedEl;
 }
 
