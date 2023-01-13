@@ -28,10 +28,8 @@ export function createDraggedElementFrom(originalElement, positionCenterOnXY) {
         const center = findCenter(rect);
         elTopPx -= center.y - positionCenterOnXY.y;
         elLeftPx -= center.x - positionCenterOnXY.x;
-        window.setTimeout(() => {
-            draggedEl.style.top = `${elTopPx}px`;
-            draggedEl.style.left = `${elLeftPx}px`;
-        }, 0);
+        draggedEl.style.top = `${elTopPx}px`;
+        draggedEl.style.left = `${elLeftPx}px`;
     }
     draggedEl.style.margin = "0";
     // we can't have relative or automatic height and width or it will break the illusion
@@ -40,7 +38,6 @@ export function createDraggedElementFrom(originalElement, positionCenterOnXY) {
     draggedEl.style.width = `${rect.width}px`;
     draggedEl.style.zIndex = "9999";
     draggedEl.style.cursor = "grabbing";
-    draggedEl.style.display = "none";
     return draggedEl;
 }
 
