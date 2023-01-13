@@ -32,7 +32,6 @@ import {
     DRAGGED_OVER_INDEX_EVENT_NAME
 } from "./helpers/dispatcher";
 import {areArraysShallowEqualSameOrder, areObjectsShallowEqual, toString} from "./helpers/util";
-import {getBoundingRectNoTransforms} from "./helpers/intersection";
 
 const DEFAULT_DROP_ZONE_TYPE = "--any--";
 const MIN_OBSERVATION_INTERVAL_MS = 100;
@@ -215,7 +214,7 @@ function handleMouseMove(e) {
     e.preventDefault();
     const c = e.touches ? e.touches[0] : e;
     currentMousePosition = {x: c.clientX, y: c.clientY};
-    draggedEl.style.transform = `translate3d(${currentMousePosition.x - dragStartMousePosition.x}px, ${
+    draggedEl.style.transform = `scale(0.8) translateX(240px) translate3d(${currentMousePosition.x - dragStartMousePosition.x}px, ${
         currentMousePosition.y - dragStartMousePosition.y
     }px, 0)`;
 }
@@ -269,13 +268,8 @@ function handleDrop() {
 
 // helper function for handleDrop
 function animateDraggedToFinalPosition(shadowElIdx, callback) {
-    const shadowElRect = getBoundingRectNoTransforms(shadowElDropZone.children[shadowElIdx]);
-    const newTransform = {
-        x: shadowElRect.left - parseFloat(draggedEl.style.left),
-        y: shadowElRect.top - parseFloat(draggedEl.style.top)
-    };
     draggedEl.style.transition = "0";
-    draggedEl.style.transform = `translate3d(${newTransform.x}px, ${newTransform.y}px, 0)`;
+    draggedEl.style.display = "none";
     window.setTimeout(callback, 0);
 }
 
