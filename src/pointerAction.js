@@ -274,9 +274,9 @@ function animateDraggedToFinalPosition(shadowElIdx, callback) {
         x: shadowElRect.left - parseFloat(draggedEl.style.left),
         y: shadowElRect.top - parseFloat(draggedEl.style.top)
     };
-    const {dropAnimationDurationMs} = dzToConfig.get(shadowElDropZone);
+    draggedEl.style.transition = "0";
     draggedEl.style.transform = `translate3d(${newTransform.x}px, ${newTransform.y}px, 0)`;
-    window.setTimeout(callback, dropAnimationDurationMs);
+    window.setTimeout(callback, 0);
 }
 
 function scheduleDZForRemovalAfterDrop(dz, destroy) {
