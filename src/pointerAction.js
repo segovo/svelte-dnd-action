@@ -178,7 +178,7 @@ function handleDraggedLeft(e) {
 
     let shadowItem;
     const {type, theOtherDz} = e.detail;
-    if (originDropZone !== e.currentTarget) {
+    if (originDropZone === e.currentTarget) {
         // const originZoneItems = dzToConfig.get(originDropZone).items;
         // const newOriginZoneItems = dzToConfig.get(originDropZone).items;
         // const newOriginZoneItems = originZoneItems.filter(item => !item[SHADOW_ITEM_MARKER_PROPERTY_NAME]);
