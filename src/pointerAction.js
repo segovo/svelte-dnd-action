@@ -224,7 +224,7 @@ function handleDraggedIsOverIndex(e) {
         return;
     }
 
-    if (originDropZone === e.currentTarget) {
+    if (originDropZone !== e.currentTarget) {
         isDraggedOutsideOfAnyDz = false;
         const {index} = e.detail.indexObj;
         const shadowElIdx = findShadowElementIdx(items);
