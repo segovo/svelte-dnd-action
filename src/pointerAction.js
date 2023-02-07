@@ -19,7 +19,8 @@ import {
     preventShrinking,
     styleActiveDropZones,
     styleDraggable,
-    styleInactiveDropZones
+    styleInactiveDropZones,
+    unDecorateShadowElement
 } from "./helpers/styler";
 import {
     dispatchConsiderEvent,
@@ -201,10 +202,10 @@ function handleDraggedIsOverIndex(e) {
         return;
     }
     isDraggedOutsideOfAnyDz = false;
-    const {index} = e.detail.indexObj;
-    const shadowElIdx = findShadowElementIdx(items);
-    items.splice(shadowElIdx, 1);
-    items.splice(index, 0, shadowElData);
+    // const {index} = e.detail.indexObj;
+    // const shadowElIdx = findShadowElementIdx(items);
+    // items.splice(shadowElIdx, 1);
+    // items.splice(index, 0, shadowElData);
     dispatchConsiderEvent(e.currentTarget, items, {trigger: TRIGGERS.DRAGGED_OVER_INDEX, id: draggedElData[ITEM_ID_KEY], source: SOURCES.POINTER});
 }
 
@@ -259,7 +260,7 @@ function handleDrop() {
                 source: SOURCES.POINTER
             });
         }
-        // unDecorateShadowElement(shadowElDropZone.children[shadowElIdx]);
+        unDecorateShadowElement(shadowElDropZone.children[shadowElIdx]);
         cleanupPostDrop();
     }
     finalizeWithinZone();
