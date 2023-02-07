@@ -132,11 +132,10 @@ function handleDraggedEntered(e) {
     }
     isDraggedOutsideOfAnyDz = false;
     // this deals with another race condition. in rare occasions (super rapid operations) the list hasn't updated yet
-    // if (originDropZone !== e.currentTarget) {
-
-    // }
-    items = items.filter(item => item[ITEM_ID_KEY] !== shadowElData[ITEM_ID_KEY]);
-    printDebug(() => `dragged entered items ${toString(items)}`);
+    if (originDropZone !== e.currentTarget) {
+        items = items.filter(item => item[ITEM_ID_KEY] !== shadowElData[ITEM_ID_KEY]);
+        printDebug(() => `dragged entered items ${toString(items)}`);
+    }
 
     if (originDropZone !== e.currentTarget) {
         // const originZoneItems = dzToConfig.get(originDropZone).items;
@@ -152,7 +151,7 @@ function handleDraggedEntered(e) {
         if (shadowPlaceHolderIdx !== -1) {
             // only happens right after drag start, on the first drag entered event
             printDebug(() => "removing placeholder item from origin dz");
-            //items.splice(shadowPlaceHolderIdx, 1);
+            items.splice(shadowPlaceHolderIdx, 1);
         }
     }
 
@@ -179,7 +178,7 @@ function handleDraggedLeft(e) {
         return;
     }
 
-    let shadowItem;
+    // let shadowItem;
     const {type, theOtherDz} = e.detail;
     if (originDropZone === e.currentTarget) {
         // const originZoneItems = dzToConfig.get(originDropZone).items;
@@ -195,15 +194,15 @@ function handleDraggedLeft(e) {
         type === DRAGGED_LEFT_TYPES.OUTSIDE_OF_ANY ||
         (type === DRAGGED_LEFT_TYPES.LEFT_FOR_ANOTHER && theOtherDz !== originDropZone && dzToConfig.get(theOtherDz).dropFromOthersDisabled)
     ) {
-        const shadowElIdx = findShadowElementIdx(items);
-        shadowItem = items.splice(shadowElIdx, 1)[0];
-        shadowElDropZone = undefined;
+        // const shadowElIdx = findShadowElementIdx(items);
+        // shadowItem = items.splice(shadowElIdx, 1)[0];
+        // shadowElDropZone = undefined;
 
         printDebug(() => "dragged left all, putting shadow element back in the origin dz");
         isDraggedOutsideOfAnyDz = true;
         shadowElDropZone = originDropZone;
         const originZoneItems = dzToConfig.get(originDropZone).items;
-        originZoneItems.splice(originIndex, 0, shadowItem);
+        // originZoneItems.splice(originIndex, 0, shadowItem);
         dispatchConsiderEvent(originDropZone, originZoneItems, {
             trigger: TRIGGERS.DRAGGED_LEFT_ALL,
             id: draggedElData[ITEM_ID_KEY],
