@@ -223,11 +223,17 @@ function handleDraggedIsOverIndex(e) {
         printDebug(() => "drop is currently disabled");
         return;
     }
-    isDraggedOutsideOfAnyDz = false;
-    const {index} = e.detail.indexObj;
-    const shadowElIdx = findShadowElementIdx(items);
-    items.splice(shadowElIdx, 1);
-    items.splice(index, 0, shadowElData);
+
+    if (originDropZone === e.currentTarget) {
+        isDraggedOutsideOfAnyDz = false;
+        const {index} = e.detail.indexObj;
+        const shadowElIdx = findShadowElementIdx(items);
+        items.splice(shadowElIdx, 1);
+        items.splice(index, 0, shadowElData);
+    } else {
+        //
+    }
+
     dispatchConsiderEvent(e.currentTarget, items, {trigger: TRIGGERS.DRAGGED_OVER_INDEX, id: draggedElData[ITEM_ID_KEY], source: SOURCES.POINTER});
 }
 
