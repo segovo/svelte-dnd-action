@@ -168,9 +168,9 @@ function handleDraggedLeft(e) {
         printDebug(() => "drop is currently disabled");
         return;
     }
-    const shadowElIdx = findShadowElementIdx(items);
-    const shadowItem = items.splice(shadowElIdx, 1)[0];
-    shadowElDropZone = undefined;
+    // const shadowElIdx = findShadowElementIdx(items);
+    // const shadowItem = items.splice(shadowElIdx, 1)[0];
+    // shadowElDropZone = undefined;
     const {type, theOtherDz} = e.detail;
     if (
         type === DRAGGED_LEFT_TYPES.OUTSIDE_OF_ANY ||
@@ -180,7 +180,7 @@ function handleDraggedLeft(e) {
         isDraggedOutsideOfAnyDz = true;
         shadowElDropZone = originDropZone;
         const originZoneItems = dzToConfig.get(originDropZone).items;
-        originZoneItems.splice(originIndex, 0, shadowItem);
+        // originZoneItems.splice(originIndex, 0, shadowItem);
         dispatchConsiderEvent(originDropZone, originZoneItems, {
             trigger: TRIGGERS.DRAGGED_LEFT_ALL,
             id: draggedElData[ITEM_ID_KEY],
@@ -202,10 +202,10 @@ function handleDraggedIsOverIndex(e) {
         return;
     }
     isDraggedOutsideOfAnyDz = false;
-    // const {index} = e.detail.indexObj;
-    // const shadowElIdx = findShadowElementIdx(items);
-    // items.splice(shadowElIdx, 1);
-    // items.splice(index, 0, shadowElData);
+    const {index} = e.detail.indexObj;
+    const shadowElIdx = findShadowElementIdx(items);
+    items.splice(shadowElIdx, 1);
+    items.splice(index, 0, shadowElData);
     dispatchConsiderEvent(e.currentTarget, items, {trigger: TRIGGERS.DRAGGED_OVER_INDEX, id: draggedElData[ITEM_ID_KEY], source: SOURCES.POINTER});
 }
 
