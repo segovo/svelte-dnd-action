@@ -136,8 +136,9 @@ function handleDraggedEntered(e) {
     printDebug(() => `dragged entered items ${toString(items)}`);
 
     if (originDropZone !== e.currentTarget) {
-        const originZoneItems = dzToConfig.get(originDropZone).items;
-        const newOriginZoneItems = originZoneItems.filter(item => !item[SHADOW_ITEM_MARKER_PROPERTY_NAME]);
+        // const originZoneItems = dzToConfig.get(originDropZone).items;
+        const newOriginZoneItems = dzToConfig.get(originDropZone).items;
+        // const newOriginZoneItems = originZoneItems.filter(item => !item[SHADOW_ITEM_MARKER_PROPERTY_NAME]);
         dispatchConsiderEvent(originDropZone, newOriginZoneItems, {
             trigger: TRIGGERS.DRAGGED_ENTERED_ANOTHER,
             id: draggedElData[ITEM_ID_KEY],
@@ -152,10 +153,10 @@ function handleDraggedEntered(e) {
         }
     }
 
-    // const {index, isProximityBased} = e.detail.indexObj;
-    // const shadowElIdx = isProximityBased && index === e.currentTarget.children.length - 1 ? index + 1 : index;
-    // shadowElDropZone = e.currentTarget;
-    // items.splice(shadowElIdx, 0, shadowElData);
+    const {index, isProximityBased} = e.detail.indexObj;
+    const shadowElIdx = isProximityBased && index === e.currentTarget.children.length - 1 ? index + 1 : index;
+    shadowElDropZone = e.currentTarget;
+    items.splice(shadowElIdx, 0, shadowElData);
     dispatchConsiderEvent(e.currentTarget, items, {trigger: TRIGGERS.DRAGGED_ENTERED, id: draggedElData[ITEM_ID_KEY], source: SOURCES.POINTER});
 }
 
