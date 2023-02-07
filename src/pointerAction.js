@@ -148,7 +148,7 @@ function handleDraggedEntered(e) {
         if (shadowPlaceHolderIdx !== -1) {
             // only happens right after drag start, on the first drag entered event
             printDebug(() => "removing placeholder item from origin dz");
-            items.splice(shadowPlaceHolderIdx, 1);
+            // items.splice(shadowPlaceHolderIdx, 1);
         }
     }
 
@@ -168,9 +168,9 @@ function handleDraggedLeft(e) {
         printDebug(() => "drop is currently disabled");
         return;
     }
-    // const shadowElIdx = findShadowElementIdx(items);
-    // const shadowItem = items.splice(shadowElIdx, 1)[0];
-    // shadowElDropZone = undefined;
+    const shadowElIdx = findShadowElementIdx(items);
+    const shadowItem = items.splice(shadowElIdx, 1)[0];
+    shadowElDropZone = undefined;
     const {type, theOtherDz} = e.detail;
     if (
         type === DRAGGED_LEFT_TYPES.OUTSIDE_OF_ANY ||
@@ -180,7 +180,7 @@ function handleDraggedLeft(e) {
         isDraggedOutsideOfAnyDz = true;
         shadowElDropZone = originDropZone;
         const originZoneItems = dzToConfig.get(originDropZone).items;
-        // originZoneItems.splice(originIndex, 0, shadowItem);
+        originZoneItems.splice(originIndex, 0, shadowItem);
         dispatchConsiderEvent(originDropZone, originZoneItems, {
             trigger: TRIGGERS.DRAGGED_LEFT_ALL,
             id: draggedElData[ITEM_ID_KEY],
