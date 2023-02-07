@@ -132,10 +132,11 @@ function handleDraggedEntered(e) {
     }
     isDraggedOutsideOfAnyDz = false;
     // this deals with another race condition. in rare occasions (super rapid operations) the list hasn't updated yet
-    if (originDropZone !== e.currentTarget) {
-        items = items.filter(item => item[ITEM_ID_KEY] !== shadowElData[ITEM_ID_KEY]);
-        printDebug(() => `dragged entered items ${toString(items)}`);
-    }
+    // if (originDropZone !== e.currentTarget) {
+
+    // }
+    items = items.filter(item => item[ITEM_ID_KEY] !== shadowElData[ITEM_ID_KEY]);
+    printDebug(() => `dragged entered items ${toString(items)}`);
 
     if (originDropZone !== e.currentTarget) {
         // const originZoneItems = dzToConfig.get(originDropZone).items;
@@ -151,7 +152,7 @@ function handleDraggedEntered(e) {
         if (shadowPlaceHolderIdx !== -1) {
             // only happens right after drag start, on the first drag entered event
             printDebug(() => "removing placeholder item from origin dz");
-            items.splice(shadowPlaceHolderIdx, 1);
+            //items.splice(shadowPlaceHolderIdx, 1);
         }
     }
 
