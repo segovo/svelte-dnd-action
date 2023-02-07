@@ -114,9 +114,9 @@ function unWatchDraggedElement() {
 }
 
 // finds the initial placeholder that is placed there on drag start
-function findShadowPlaceHolderIdx(items) {
-    return items.findIndex(item => item[ITEM_ID_KEY] === SHADOW_PLACEHOLDER_ITEM_ID);
-}
+// function findShadowPlaceHolderIdx(items) {
+//     return items.findIndex(item => item[ITEM_ID_KEY] === SHADOW_PLACEHOLDER_ITEM_ID);
+// }
 function findShadowElementIdx(items) {
     // checking that the id is not the placeholder's for Dragula like usecases
     return items.findIndex(item => !!item[SHADOW_ITEM_MARKER_PROPERTY_NAME] && item[ITEM_ID_KEY] !== SHADOW_PLACEHOLDER_ITEM_ID);
@@ -147,12 +147,12 @@ function handleDraggedEntered(e) {
             source: SOURCES.POINTER
         });
     } else {
-        const shadowPlaceHolderIdx = findShadowPlaceHolderIdx(items);
-        if (shadowPlaceHolderIdx !== -1) {
-            // only happens right after drag start, on the first drag entered event
-            printDebug(() => "removing placeholder item from origin dz");
-            items.splice(shadowPlaceHolderIdx, 1);
-        }
+        // const shadowPlaceHolderIdx = findShadowPlaceHolderIdx(items);
+        // if (shadowPlaceHolderIdx !== -1) {
+        //     // only happens right after drag start, on the first drag entered event
+        //     printDebug(() => "removing placeholder item from origin dz");
+        //     items.splice(shadowPlaceHolderIdx, 1);
+        // }
     }
 
     if (originDropZone !== e.currentTarget) {
@@ -160,10 +160,10 @@ function handleDraggedEntered(e) {
         // const newOriginZoneItems = dzToConfig.get(originDropZone).items;
         // const newOriginZoneItems = originZoneItems.filter(item => !item[SHADOW_ITEM_MARKER_PROPERTY_NAME]);
     } else {
-        // const {index, isProximityBased} = e.detail.indexObj;
-        // const shadowElIdx = isProximityBased && index === e.currentTarget.children.length - 1 ? index + 1 : index;
-        // shadowElDropZone = e.currentTarget;
-        // items.splice(shadowElIdx, 0, shadowElData);
+        const {index, isProximityBased} = e.detail.indexObj;
+        const shadowElIdx = isProximityBased && index === e.currentTarget.children.length - 1 ? index + 1 : index;
+        shadowElDropZone = e.currentTarget;
+        items.splice(shadowElIdx, 0, shadowElData);
     }
     dispatchConsiderEvent(e.currentTarget, items, {trigger: TRIGGERS.DRAGGED_ENTERED, id: draggedElData[ITEM_ID_KEY], source: SOURCES.POINTER});
 }
