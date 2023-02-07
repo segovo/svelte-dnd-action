@@ -155,11 +155,12 @@ function handleDraggedEntered(e) {
         // }
     }
 
+    const {index, isProximityBased} = e.detail.indexObj;
+    const shadowElIdx = isProximityBased && index === e.currentTarget.children.length - 1 ? index + 1 : index;
+    shadowElDropZone = e.currentTarget;
+    items.splice(shadowElIdx, 0, shadowElData);
+
     if (originDropZone !== e.currentTarget) {
-        const {index, isProximityBased} = e.detail.indexObj;
-        const shadowElIdx = isProximityBased && index === e.currentTarget.children.length - 1 ? index + 1 : index;
-        shadowElDropZone = e.currentTarget;
-        items.splice(shadowElIdx, 0, shadowElData);
         // const originZoneItems = dzToConfig.get(originDropZone).items;
         // const newOriginZoneItems = dzToConfig.get(originDropZone).items;
         // const newOriginZoneItems = originZoneItems.filter(item => !item[SHADOW_ITEM_MARKER_PROPERTY_NAME]);
