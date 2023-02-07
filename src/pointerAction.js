@@ -185,15 +185,19 @@ function handleDraggedLeft(e) {
         // const newOriginZoneItems = dzToConfig.get(originDropZone).items;
         // const newOriginZoneItems = originZoneItems.filter(item => !item[SHADOW_ITEM_MARKER_PROPERTY_NAME]);
     } else {
-        const shadowElIdx = findShadowElementIdx(items);
-        shadowItem = items.splice(shadowElIdx, 1)[0];
-        shadowElDropZone = undefined;
+        // const shadowElIdx = findShadowElementIdx(items);
+        // shadowItem = items.splice(shadowElIdx, 1)[0];
+        // shadowElDropZone = undefined;
     }
 
     if (
         type === DRAGGED_LEFT_TYPES.OUTSIDE_OF_ANY ||
         (type === DRAGGED_LEFT_TYPES.LEFT_FOR_ANOTHER && theOtherDz !== originDropZone && dzToConfig.get(theOtherDz).dropFromOthersDisabled)
     ) {
+        const shadowElIdx = findShadowElementIdx(items);
+        shadowItem = items.splice(shadowElIdx, 1)[0];
+        shadowElDropZone = undefined;
+
         printDebug(() => "dragged left all, putting shadow element back in the origin dz");
         isDraggedOutsideOfAnyDz = true;
         shadowElDropZone = originDropZone;
