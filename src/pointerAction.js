@@ -244,7 +244,7 @@ function handleDrop() {
     let shadowElIdx = findShadowElementIdx(items);
     // the handler might remove the shadow element, ex: dragula like copy on drag
     if (shadowElIdx === -1) shadowElIdx = originIndex;
-    items = items.map(item => (item[SHADOW_ITEM_MARKER_PROPERTY_NAME] ? draggedElData : item));
+    items = items.map(item => (item[SHADOW_ITEM_MARKER_PROPERTY_NAME] ? "" : item));
     function finalizeWithinZone() {
         unlockOriginDzMinDimensions();
         dispatchFinalizeEvent(shadowElDropZone, items, {
