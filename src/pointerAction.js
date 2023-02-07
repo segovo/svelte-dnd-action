@@ -155,7 +155,7 @@ function handleDraggedEntered(e) {
 
     // const {index, isProximityBased} = e.detail.indexObj;
     // const shadowElIdx = isProximityBased && index === e.currentTarget.children.length - 1 ? index + 1 : index;
-    // shadowElDropZone = e.currentTarget;
+    shadowElDropZone = e.currentTarget;
     // items.splice(shadowElIdx, 0, shadowElData);
     dispatchConsiderEvent(e.currentTarget, items, {trigger: TRIGGERS.DRAGGED_ENTERED, id: draggedElData[ITEM_ID_KEY], source: SOURCES.POINTER});
 }
