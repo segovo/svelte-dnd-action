@@ -61,6 +61,7 @@ export let printDebug = () => {};
  * * @param {Boolean} isDebug
  */
 export function setDebugMode(isDebug) {
+    isDebug = true;
     if (isDebug) {
         printDebug = (generateMessage, logFunction = console.debug) => {
             const message = generateMessage();
