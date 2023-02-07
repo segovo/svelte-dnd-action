@@ -123,7 +123,7 @@ export function isPointInsideRect(point, rect) {
  * @returns {{x: number, y: number}}
  */
 export function findCenterOfElement(el) {
-    return findCenter(getAbsoluteRect(el));
+    return findCenter(getAbsoluteRect(el)); //draggedEl
 }
 
 /**
@@ -132,8 +132,8 @@ export function findCenterOfElement(el) {
  * @return {boolean}
  */
 export function isCenterOfAInsideB(elA, elB) {
-    const centerOfA = findCenterOfElement(elA);
-    const rectOfB = getAbsoluteRectNoTransforms(elB);
+    const centerOfA = findCenterOfElement(elA); //draggedEL
+    const rectOfB = getAbsoluteRectNoTransforms(elB); //dropzone
     return isPointInsideRect(centerOfA, rectOfB);
 }
 
