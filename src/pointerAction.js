@@ -19,8 +19,7 @@ import {
     preventShrinking,
     styleActiveDropZones,
     styleDraggable,
-    styleInactiveDropZones,
-    unDecorateShadowElement
+    styleInactiveDropZones
 } from "./helpers/styler";
 import {
     dispatchConsiderEvent,
@@ -244,7 +243,7 @@ function handleDrop() {
     let shadowElIdx = findShadowElementIdx(items);
     // the handler might remove the shadow element, ex: dragula like copy on drag
     if (shadowElIdx === -1) shadowElIdx = originIndex;
-    items = items.map(item => (item[SHADOW_ITEM_MARKER_PROPERTY_NAME] ? "" : item));
+    items = items.map(item => (item[SHADOW_ITEM_MARKER_PROPERTY_NAME] ? draggedElData : item));
     function finalizeWithinZone() {
         unlockOriginDzMinDimensions();
         dispatchFinalizeEvent(shadowElDropZone, items, {
@@ -260,7 +259,7 @@ function handleDrop() {
                 source: SOURCES.POINTER
             });
         }
-        unDecorateShadowElement(shadowElDropZone.children[shadowElIdx]);
+        // unDecorateShadowElement(shadowElDropZone.children[shadowElIdx]);
         cleanupPostDrop();
     }
     finalizeWithinZone();
