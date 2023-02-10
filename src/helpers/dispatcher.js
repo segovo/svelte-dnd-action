@@ -1,6 +1,7 @@
 // external events
 const FINALIZE_EVENT_NAME = "finalize";
 const CONSIDER_EVENT_NAME = "consider";
+const MOUSEMOVE_EVENT_NAME = "mousemove";
 
 /**
  * @typedef {Object} Info
@@ -15,6 +16,14 @@ export function dispatchFinalizeEvent(el, items, info) {
     el.dispatchEvent(
         new CustomEvent(FINALIZE_EVENT_NAME, {
             detail: {items, info}
+        })
+    );
+}
+
+export function dispatchMousemove(el, mousePos) {
+    el.dispatchEvent(
+        new CustomEvent(MOUSEMOVE_EVENT_NAME, {
+            position: mousePos
         })
     );
 }

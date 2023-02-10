@@ -50,11 +50,7 @@ function cacheShadowRect(dz) {
  * @param {HTMLElement} collectionBelowEl
  * @returns {Index|null} -  if the element is over the container the Index object otherwise null
  */
-
-//draggedEl, dropzone
 export function findWouldBeIndex(floatingAboveEl, collectionBelowEl) {
-    // if draggedEl is above dropzone type folder then dispatch
-
     if (!isCenterOfAInsideB(floatingAboveEl, collectionBelowEl)) {
         return null;
     }
