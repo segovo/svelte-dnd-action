@@ -41,11 +41,11 @@ export function makeScroller() {
         if (elementToScroll.scrollHeight > elementToScroll.clientHeight) {
             if (bottom < SCROLL_ZONE_PX) {
                 scrollingVertically = true;
-                scrollingInfo.directionObj = {x: 0, y: -1};
+                scrollingInfo.directionObj = {x: 0, y: 1};
                 scrollingInfo.stepPx = calcScrollStepPx(bottom) / 16;
             } else if (top < SCROLL_ZONE_PX) {
                 scrollingVertically = true;
-                scrollingInfo.directionObj = {x: 0, y: 1};
+                scrollingInfo.directionObj = {x: 0, y: -1};
                 scrollingInfo.stepPx = calcScrollStepPx(top) / 16;
             }
             if (scrollingVertically) {
