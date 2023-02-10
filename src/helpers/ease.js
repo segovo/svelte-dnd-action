@@ -1,6 +1,6 @@
 const easeP1 = {
-    x: 0.4,
-    y: 0
+    x: 0,
+    y: 1
 };
 const easeP2 = {
     x: 0,
