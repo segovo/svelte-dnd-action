@@ -42,7 +42,7 @@ export function makeScroller() {
                 scrollingInfo.stepPx = calcScrollStepPx(window.innerHeight) / 16;
             } else if (0 < SCROLL_ZONE_PX) {
                 scrollingVertically = true;
-                scrollingInfo.directionObj = {x: 0, y: 1};
+                scrollingInfo.directionObj = {x: 0, y: -1};
                 scrollingInfo.stepPx = calcScrollStepPx(0) / 16;
             }
             if (scrollingVertically) {
