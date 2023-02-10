@@ -23,7 +23,7 @@ export function dispatchFinalizeEvent(el, items, info) {
 export function dispatchMousemove(el, mousePos) {
     el.dispatchEvent(
         new CustomEvent(MOUSEMOVE_EVENT_NAME, {
-            position: mousePos
+            detail: mousePos
         })
     );
 }
