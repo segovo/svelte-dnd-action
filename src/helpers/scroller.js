@@ -54,7 +54,7 @@ export function makeScroller() {
                 console.log("ease(normalizedScrollStep): ", ease(normalizedScrollStep));
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: 1};
-                scrollingInfo.stepPx = calcScrollStepPx(ease(normalizedScrollStep));
+                scrollingInfo.stepPx = calcScrollStepPx(1 + ease(normalizedScrollStep));
             } else if (top < scrollZonePX) {
                 let normalizedScrollStep = normalize(top, 0, scrollZonePX);
                 console.log("top: ", top);
@@ -63,7 +63,7 @@ export function makeScroller() {
                 console.log("ease(normalizedScrollStep): ", ease(normalizedScrollStep));
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: -1};
-                scrollingInfo.stepPx = calcScrollStepPx(ease(normalizedScrollStep));
+                scrollingInfo.stepPx = calcScrollStepPx(1 + ease(normalizedScrollStep));
             }
             if (scrollingVertically) {
                 if (!isAlreadyScrolling) {
