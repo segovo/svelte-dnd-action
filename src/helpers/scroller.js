@@ -1,8 +1,8 @@
 import {calcInnerDistancesBetweenPointAndSidesOfElement} from "./intersection";
 import {ease} from "./ease";
 
-let scrollRangePX = window.innerHeight / 8;
-let scrollZonePX = scrollRangePX + scrollRangePX / 10;
+let scrollRangePX = window.innerHeight / 10;
+let scrollZonePX = scrollRangePX + scrollRangePX / 20;
 
 export function makeScroller() {
     let scrollingInfo;
@@ -31,8 +31,8 @@ export function makeScroller() {
      * @return {boolean} - true if scrolling was needed
      */
     function scrollIfNeeded(pointer, elementToScroll) {
-        scrollRangePX = window.innerHeight / 8;
-        scrollZonePX = scrollRangePX + scrollRangePX / 10;
+        scrollRangePX = window.innerHeight / 10;
+        scrollZonePX = scrollRangePX + scrollRangePX / 20;
 
         if (!elementToScroll) {
             return false;
@@ -51,13 +51,13 @@ export function makeScroller() {
         // vertical
         if (elementToScroll.scrollHeight > elementToScroll.clientHeight) {
             if (bottom < scrollZonePX) {
-                let normalizedScrollStep = normalize(scrollRangePX - Math.max(bottom - scrollRangePX / 10, 0), 0, scrollRangePX);
+                let normalizedScrollStep = normalize(scrollRangePX - Math.max(bottom - scrollRangePX / 20, 0), 0, scrollRangePX);
 
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: 1};
                 scrollingInfo.stepPx = ease(normalizedScrollStep) * 30;
             } else if (top < scrollZonePX) {
-                let normalizedScrollStep = normalize(scrollRangePX - Math.max(top - scrollRangePX / 10, 0), 0, scrollRangePX);
+                let normalizedScrollStep = normalize(scrollRangePX - Math.max(top - scrollRangePX / 20, 0), 0, scrollRangePX);
 
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: -1};
