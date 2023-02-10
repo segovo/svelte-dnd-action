@@ -220,7 +220,7 @@ function handleMouseMove(e) {
         currentMousePosition.y - dragStartMousePosition.y
     }px, 0)`;
 
-    dispatchMousemove(originDropZone, {x: c.clientX, y: c.clientY});
+    dispatchMousemove(originDropZone, {x: c.clientX, y: c.clientY, dragStartMousePosition: dragStartMousePosition});
 }
 
 function handleDrop() {
