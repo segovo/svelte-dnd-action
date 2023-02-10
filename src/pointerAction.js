@@ -216,7 +216,7 @@ function handleMouseMove(e) {
     e.preventDefault();
     const c = e.touches ? e.touches[0] : e;
 
-    const {constrainAxisX, constrainAxisY} = dzToConfig.get(e.currentTarget) || dzToConfig.get(originDropZone);
+    const {constrainAxisX, constrainAxisY} = dzToConfig.get(originDropZone);
     currentMousePosition = {
         x: constrainAxisX ? dragStartMousePosition.x : c.clientX,
         y: constrainAxisY ? dragStartMousePosition.y : c.clientY
@@ -418,7 +418,8 @@ export function dndzone(node, options) {
         const placeHolderElData = {...shadowElData, [ITEM_ID_KEY]: SHADOW_PLACEHOLDER_ITEM_ID};
 
         // creating the draggable element
-        draggedEl = createDraggedElementFrom(originalDragTarget, centreDraggedOnCursor && currentMousePosition);
+        const {constrainAxisX, constrainAxisY} = dzToConfig.get(originDropZone);
+        draggedEl = createDraggedElementFrom(originalDragTarget, centreDraggedOnCursor && currentMousePosition, constrainAxisX, constrainAxisY);
         // We will keep the original dom node in the dom because touch events keep firing on it, we want to re-add it after the framework removes it
         function keepOriginalElementInDom() {
             if (!draggedEl.parentElement) {

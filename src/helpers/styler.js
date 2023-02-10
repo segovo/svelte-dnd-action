@@ -18,7 +18,7 @@ function trs(property) {
  * @param {Point} [positionCenterOnXY]
  * @return {Node} - the cloned, styled element
  */
-export function createDraggedElementFrom(originalElement, positionCenterOnXY) {
+export function createDraggedElementFrom(originalElement, positionCenterOnXY, constrainAxisX, constrainAxisY) {
     const rect = originalElement.getBoundingClientRect();
     const draggedEl = svelteNodeClone(originalElement);
     copyStylesFromTo(originalElement, draggedEl);
@@ -28,13 +28,19 @@ export function createDraggedElementFrom(originalElement, positionCenterOnXY) {
     let elLeftPx = rect.left;
     draggedEl.style.top = `${elTopPx}px`;
     draggedEl.style.left = `${elLeftPx}px`;
+
     if (positionCenterOnXY) {
         const center = findCenter(rect);
         elTopPx -= center.y - positionCenterOnXY.y;
         elLeftPx -= center.x - positionCenterOnXY.x;
+
         window.setTimeout(() => {
-            draggedEl.style.top = `${elTopPx}px`;
-            draggedEl.style.left = `${elLeftPx}px`;
+            if (!constrainAxisX) {
+                draggedEl.style.left = `${elLeftPx}px`;
+            }
+            if (!constrainAxisY) {
+                draggedEl.style.top = `${elTopPx}px`;
+            }
         }, 0);
     }
     draggedEl.style.margin = "0";
