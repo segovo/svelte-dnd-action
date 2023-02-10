@@ -1,10 +1,10 @@
 const easeP1 = {
-    x: 0.4,
+    x: 0.75,
     y: 0
 };
 const easeP2 = {
-    x: 0,
-    y: 1
+    x: 1,
+    y: 0.25
 };
 
 function cubicBezier(t, p1, p2) {
