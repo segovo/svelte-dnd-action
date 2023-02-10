@@ -1,7 +1,7 @@
 // external events
 const FINALIZE_EVENT_NAME = "finalize";
 const CONSIDER_EVENT_NAME = "consider";
-const MOUSEMOVE_EVENT_NAME = "mousemove";
+const MOUSEMOVE_EVENT_NAME = "newmousepos";
 
 /**
  * @typedef {Object} Info
