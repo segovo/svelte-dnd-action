@@ -48,22 +48,16 @@ export function makeScroller() {
         if (elementToScroll.scrollHeight > elementToScroll.clientHeight) {
             if (bottom < scrollZonePX) {
                 let normalizedScrollStep = normalize(bottom, 0, scrollZonePX);
-                console.log("bottom: ", bottom);
-                console.log("scrollZonePX: ", scrollZonePX);
-                console.log("normalizedScrollStep: ", normalizedScrollStep);
-                console.log("ease(normalizedScrollStep): ", ease(normalizedScrollStep));
+
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: 1};
-                scrollingInfo.stepPx = ease(normalizedScrollStep) * 10;
+                scrollingInfo.stepPx = ease(1 - normalizedScrollStep) * 10;
             } else if (top < scrollZonePX) {
                 let normalizedScrollStep = normalize(top, 0, scrollZonePX);
-                console.log("top: ", top);
-                console.log("scrollZonePX: ", scrollZonePX);
-                console.log("normalizedScrollStep: ", normalizedScrollStep);
-                console.log("ease(normalizedScrollStep): ", ease(normalizedScrollStep));
+
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: -1};
-                scrollingInfo.stepPx = ease(normalizedScrollStep) * 10;
+                scrollingInfo.stepPx = ease(1 - normalizedScrollStep) * 10;
             }
             if (scrollingVertically) {
                 if (!isAlreadyScrolling) {
