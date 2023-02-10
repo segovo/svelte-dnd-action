@@ -55,13 +55,13 @@ export function makeScroller() {
 
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: 1};
-                scrollingInfo.stepPx = ease(normalizedScrollStep) * 15;
+                scrollingInfo.stepPx = ease(normalizedScrollStep) * 30;
             } else if (top < scrollZonePX) {
                 let normalizedScrollStep = normalize(scrollRangePX - Math.max(top - scrollRangePX / 10, 0), 0, scrollRangePX);
 
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: -1};
-                scrollingInfo.stepPx = ease(normalizedScrollStep) * 15;
+                scrollingInfo.stepPx = ease(normalizedScrollStep) * 30;
             }
             if (scrollingVertically) {
                 if (!isAlreadyScrolling) {
