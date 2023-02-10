@@ -47,17 +47,17 @@ export function makeScroller() {
         // vertical
         if (elementToScroll.scrollHeight > elementToScroll.clientHeight) {
             if (bottom < scrollZonePX) {
-                let normalizedScrollStep = normalize(bottom, 0, scrollZonePX);
+                let normalizedScrollStep = normalize(scrollZonePX - Math.min(bottom + scrollZonePX / 20, scrollZonePX), 0, scrollZonePX);
 
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: 1};
-                scrollingInfo.stepPx = ease(1 - normalizedScrollStep) * 10;
+                scrollingInfo.stepPx = ease(normalizedScrollStep) * 15;
             } else if (top < scrollZonePX) {
-                let normalizedScrollStep = normalize(top, 0, scrollZonePX);
+                let normalizedScrollStep = normalize(scrollZonePX - Math.min(top + scrollZonePX / 20, scrollZonePX), 0, scrollZonePX);
 
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: -1};
-                scrollingInfo.stepPx = ease(1 - normalizedScrollStep) * 10;
+                scrollingInfo.stepPx = ease(normalizedScrollStep) * 15;
             }
             if (scrollingVertically) {
                 if (!isAlreadyScrolling) {
