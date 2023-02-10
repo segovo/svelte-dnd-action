@@ -1,5 +1,5 @@
 import {calcInnerDistancesBetweenPointAndSidesOfElement} from "./intersection";
-const SCROLL_ZONE_PX = 25;
+const SCROLL_ZONE_PX = 100;
 
 export function makeScroller() {
     let scrollingInfo;
