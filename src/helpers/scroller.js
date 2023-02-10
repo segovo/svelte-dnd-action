@@ -1,5 +1,4 @@
 import {calcInnerDistancesBetweenPointAndSidesOfElement} from "./intersection";
-import {ease} from "./ease";
 
 let scrollRangePX = window.innerHeight / 4;
 let scrollZonePX = scrollRangePX + scrollRangePX / 10;
@@ -55,13 +54,13 @@ export function makeScroller() {
 
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: 1};
-                scrollingInfo.stepPx = ease(normalizedScrollStep) * 15;
+                scrollingInfo.stepPx = normalizedScrollStep * 15;
             } else if (top < scrollZonePX) {
                 let normalizedScrollStep = normalize(scrollRangePX - Math.max(top - scrollRangePX / 10, 0), 0, scrollRangePX);
 
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: -1};
-                scrollingInfo.stepPx = ease(normalizedScrollStep) * 15;
+                scrollingInfo.stepPx = normalizedScrollStep * 15;
             }
             if (scrollingVertically) {
                 if (!isAlreadyScrolling) {
