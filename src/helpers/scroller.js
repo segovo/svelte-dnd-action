@@ -1,5 +1,6 @@
 import {calcInnerDistancesBetweenPointAndSidesOfElement} from "./intersection";
-const SCROLL_ZONE_PX = 100;
+import {ease} from "./ease";
+let scrollZonePX = window.innerHeight / 4;
 export function makeScroller() {
     let scrollingInfo;
     function resetScrolling() {
@@ -15,15 +16,20 @@ export function makeScroller() {
         }
     }
     function calcScrollStepPx(distancePx) {
-        return SCROLL_ZONE_PX - distancePx;
+        return scrollZonePX - distancePx;
     }
 
+    function normalize(value, min, max) {
+        return (value - min) / (max - min);
+    }
     /**
      * If the pointer is next to the sides of the element to scroll, will trigger scrolling
      * Can be called repeatedly with updated pointer and elementToScroll values without issues
      * @return {boolean} - true if scrolling was needed
      */
     function scrollIfNeeded(pointer, elementToScroll) {
+        scrollZonePX = window.innerHeight / 4;
+
         if (!elementToScroll) {
             return false;
         }
@@ -33,20 +39,25 @@ export function makeScroller() {
             return false;
         }
         const isAlreadyScrolling = !!scrollingInfo.directionObj;
-        let [scrollingVertically, scrollingHorizontally] = [false, false];
-
+        // let [scrollingVertically, scrollingHorizontally] = [false, false];
+        let scrollingVertically = false;
         let top = pointer.y;
         let bottom = window.innerHeight - pointer.y;
+
         // vertical
         if (elementToScroll.scrollHeight > elementToScroll.clientHeight) {
-            if (bottom < SCROLL_ZONE_PX) {
+            if (bottom < scrollZonePX) {
+                let normalizedScrollStep = normalize(bottom, 0, scrollZonePX);
+
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: 1};
-                scrollingInfo.stepPx = calcScrollStepPx(bottom) / 12;
-            } else if (top < SCROLL_ZONE_PX) {
+                scrollingInfo.stepPx = calcScrollStepPx(ease(normalizedScrollStep) * 10);
+            } else if (top < scrollZonePX) {
+                let normalizedScrollStep = normalize(top, 0, scrollZonePX);
+
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: -1};
-                scrollingInfo.stepPx = calcScrollStepPx(top) / 12;
+                scrollingInfo.stepPx = calcScrollStepPx(ease(normalizedScrollStep) * 10);
             }
             if (scrollingVertically) {
                 if (!isAlreadyScrolling) {
@@ -56,23 +67,23 @@ export function makeScroller() {
             }
         }
         // horizontal
-        if (elementToScroll.scrollWidth > elementToScroll.clientWidth) {
-            if (distances.right < SCROLL_ZONE_PX) {
-                scrollingHorizontally = true;
-                scrollingInfo.directionObj = {x: 1, y: 0};
-                scrollingInfo.stepPx = calcScrollStepPx(distances.right);
-            } else if (distances.left < SCROLL_ZONE_PX) {
-                scrollingHorizontally = true;
-                scrollingInfo.directionObj = {x: -1, y: 0};
-                scrollingInfo.stepPx = calcScrollStepPx(distances.left);
-            }
-            if (scrollingHorizontally) {
-                if (!isAlreadyScrolling) {
-                    scrollContainer(elementToScroll);
-                }
-                return true;
-            }
-        }
+        // if (elementToScroll.scrollWidth > elementToScroll.clientWidth) {
+        //     if (distances.right < scrollZonePX) {
+        //         scrollingHorizontally = true;
+        //         scrollingInfo.directionObj = {x: 1, y: 0};
+        //         scrollingInfo.stepPx = calcScrollStepPx(distances.right);
+        //     } else if (distances.left < scrollZonePX) {
+        //         scrollingHorizontally = true;
+        //         scrollingInfo.directionObj = {x: -1, y: 0};
+        //         scrollingInfo.stepPx = calcScrollStepPx(distances.left);
+        //     }
+        //     if (scrollingHorizontally) {
+        //         if (!isAlreadyScrolling) {
+        //             scrollContainer(elementToScroll);
+        //         }
+        //         return true;
+        //     }
+        // }
         resetScrolling();
         return false;
     }
