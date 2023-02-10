@@ -47,6 +47,8 @@ function validateOptions(options) {
         items,
         flipDurationMs,
         type,
+        constrainAxisX,
+        constrainAxisY,
         dragDisabled,
         morphDisabled,
         dropFromOthersDisabled,
@@ -78,5 +80,10 @@ function validateOptions(options) {
 }
 
 function isInt(value) {
-    return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value));
+    return (
+        !isNaN(value) &&
+        (function (x) {
+            return (x | 0) === x;
+        })(parseFloat(value))
+    );
 }
