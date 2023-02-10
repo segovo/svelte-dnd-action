@@ -172,7 +172,7 @@ export function calcInnerDistancesBetweenPointAndSidesOfElement(point, el) {
 
     return {
         top: point.y - rect.top,
-        bottm: Math.min(rect.bottom, document.documentElement.clientHeight) - point.y,
+        bottm: document.documentElement.clientHeight - point.y,
         left: point.x - rect.left,
         // TODO - figure out what is so special about right (why the rect is too big)
         right: Math.min(rect.right, document.documentElement.clientWidth) - point.x
