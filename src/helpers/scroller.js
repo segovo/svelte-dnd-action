@@ -1,7 +1,7 @@
 import {calcInnerDistancesBetweenPointAndSidesOfElement} from "./intersection";
 import {ease} from "./ease";
 
-let scrollRangePX = window.innerHeight / 10;
+let scrollRangePX = window.innerHeight / 6;
 let scrollZonePX = scrollRangePX + scrollRangePX / 20;
 
 export function makeScroller() {
@@ -31,7 +31,7 @@ export function makeScroller() {
      * @return {boolean} - true if scrolling was needed
      */
     function scrollIfNeeded(pointer, elementToScroll) {
-        scrollRangePX = window.innerHeight / 10;
+        scrollRangePX = window.innerHeight / 6;
         scrollZonePX = scrollRangePX + scrollRangePX / 20;
 
         if (!elementToScroll) {
