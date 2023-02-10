@@ -36,14 +36,14 @@ export function makeScroller() {
         let [scrollingVertically, scrollingHorizontally] = [false, false];
         // vertical
         if (elementToScroll.scrollHeight > elementToScroll.clientHeight) {
-            if (distances.bottom < SCROLL_ZONE_PX) {
+            if (window.innerHeight < SCROLL_ZONE_PX) {
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: 1};
-                scrollingInfo.stepPx = calcScrollStepPx(distances.bottom) / 16;
-            } else if (distances.top < SCROLL_ZONE_PX) {
+                scrollingInfo.stepPx = calcScrollStepPx(window.innerHeight) / 16;
+            } else if (0 < SCROLL_ZONE_PX) {
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: -1};
-                scrollingInfo.stepPx = calcScrollStepPx(distances.top) / 16;
+                scrollingInfo.stepPx = calcScrollStepPx(0) / 16;
             }
             if (scrollingVertically) {
                 if (!isAlreadyScrolling) {
