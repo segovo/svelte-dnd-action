@@ -11,7 +11,7 @@ import {makeScroller} from "./scroller";
 import {getDepth} from "./util";
 import {printDebug} from "../constants";
 
-const INTERVAL_MS = 200;
+const INTERVAL_MS = 25;
 const TOLERANCE_PX = 10;
 const {scrollIfNeeded, resetScrolling} = makeScroller();
 let next;
