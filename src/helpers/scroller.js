@@ -15,9 +15,9 @@ export function makeScroller() {
             window.requestAnimationFrame(() => scrollContainer(containerEl));
         }
     }
-    function calcScrollStepPx(distancePx) {
-        return scrollZonePX - distancePx;
-    }
+    // function calcScrollStepPx(distancePx) {
+    //     return scrollZonePX - distancePx;
+    // }
 
     function normalize(value, min, max) {
         return (value - min) / (max - min);
@@ -54,7 +54,7 @@ export function makeScroller() {
                 console.log("ease(normalizedScrollStep): ", ease(normalizedScrollStep));
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: 1};
-                scrollingInfo.stepPx = calcScrollStepPx(1 + ease(normalizedScrollStep));
+                scrollingInfo.stepPx = ease(normalizedScrollStep) * 10;
             } else if (top < scrollZonePX) {
                 let normalizedScrollStep = normalize(top, 0, scrollZonePX);
                 console.log("top: ", top);
@@ -63,7 +63,7 @@ export function makeScroller() {
                 console.log("ease(normalizedScrollStep): ", ease(normalizedScrollStep));
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: -1};
-                scrollingInfo.stepPx = calcScrollStepPx(1 + ease(normalizedScrollStep));
+                scrollingInfo.stepPx = ease(normalizedScrollStep) * 10;
             }
             if (scrollingVertically) {
                 if (!isAlreadyScrolling) {
