@@ -1,5 +1,5 @@
 import {calcInnerDistancesBetweenPointAndSidesOfElement} from "./intersection";
-const SCROLL_ZONE_PX = 100;
+const SCROLL_ZONE_PX = 200;
 export function makeScroller() {
     let scrollingInfo;
     function resetScrolling() {
@@ -43,7 +43,7 @@ export function makeScroller() {
             } else if (distances.top < SCROLL_ZONE_PX) {
                 scrollingVertically = true;
                 scrollingInfo.directionObj = {x: 0, y: -1};
-                scrollingInfo.stepPx = calcScrollStepPx(distances.top) / 2;
+                scrollingInfo.stepPx = calcScrollStepPx(distances.top) / 4;
             }
             if (scrollingVertically) {
                 if (!isAlreadyScrolling) {
