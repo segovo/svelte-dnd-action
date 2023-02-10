@@ -169,13 +169,9 @@ export function calcInnerDistancesBetweenPointAndSidesOfElement(point, el) {
         return null;
     }
     //        bottom: rect.bottom - point.y,
-
-    console.log("RECTANGLE!!!!!! ", rect);
-    console.log("top: ", point.y - rect.top);
-    console.log("bottom: ", rect.bottom - point.y);
     return {
-        top: point.y - rect.top,
-        bottom: rect.bottom - point.y,
+        top: point.y,
+        bottom: Window.innerHeight - point.y,
         left: point.x - rect.left,
         // TODO - figure out what is so special about right (why the rect is too big)
         right: Math.min(rect.right, document.documentElement.clientWidth) - point.x
